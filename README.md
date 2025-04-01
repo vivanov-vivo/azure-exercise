@@ -6,10 +6,10 @@ This project focuses on automating the creation and management of Azure resource
 1. Created a trial Azure subscription to work within Azure.
 2. Developed ARM templates to automate the creation of:
    - Two Azure Storage Accounts
-   - A Windows or Linux Server
-3. Set up a Continuous Deployment (CD) pipeline in Azure DevOps for automated deployment.
+   - Linux Server
+3. Set up a Continuous Deployment (CD) pipelines in Azure DevOps for automated deployment.
 4. Implemented a script to manage storage blobs, including:
-   - Creating and uploading blobs
+   - Creating and uploading blobs to one of the storages
    - Copying blobs from one storage account to another
 5. Configured metrics and monitoring for the system, which includes one server and two storage accounts, with a dashboard to display key metrics.
 
@@ -39,7 +39,7 @@ An ARM template was created to deploy two Azure Storage Accounts. The template d
 - **Account type (e.g., Standard_LRS)**
 
 ### Server ARM Template
-A separate ARM template was created to provision either a **Windows** or **Linux** server. This template defines:
+A separate ARM template was created to provision  **Linux** server. This template defines:
 - **Virtual Machine Size**
 - **Operating System (Windows/Linux)**
 - **Networking Configuration**
