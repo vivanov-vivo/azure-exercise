@@ -32,6 +32,7 @@ To begin the project, a trial Azure subscription was created using the [Azure Fr
 
 ## ARM Templates for Storage Accounts and Server
 
+ARM Templates files are located under template 
 ### Storage Accounts ARM Template
 An ARM template was created to deploy two Azure Storage Accounts. The template defines the necessary parameters for storage accounts, including:
 - **Name**
