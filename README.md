@@ -1,5 +1,3 @@
----
-
 # Azure Automation Exercire with ARM Templates and Continuous Deployment Pipeline
 
 ## Project Overview
