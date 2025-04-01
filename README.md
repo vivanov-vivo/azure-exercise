@@ -1,10 +1,6 @@
-# azure-exercise
-training for microsoft homework
-Here's a beautiful and well-structured README file for your project:
-
 ---
 
-# Azure Automation with ARM Templates and Continuous Deployment Pipeline
+# Azure Automation Exercire with ARM Templates and Continuous Deployment Pipeline
 
 ## Project Overview
 This project focuses on automating the creation and management of Azure resources using Azure Resource Manager (ARM) templates and integrating the deployment process with Azure DevOps pipelines for continuous deployment. The following steps outline the tasks completed for this project:
