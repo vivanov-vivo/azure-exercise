@@ -4,7 +4,7 @@
 # Parameters file           : parameters/parameters_store_a.json
 #                             parameters/parameters_store_b.json
 #                             parameters/parametersVM.json
-# Pipeline custom variables : resourceGroup, storagePrefix
+# Pipeline custom variables : resourceGroup
 # Set resourceGroup parameter value as desired in  Pipeline Variables 
 
 name: $(Build.DefinitionName)_$(Build.BuildId)
