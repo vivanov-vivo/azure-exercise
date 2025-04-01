@@ -32,21 +32,26 @@ To begin the project, a trial Azure subscription was created using the [Azure Fr
 # Repository Structure
 
 This repository is organized as follows:
-graph TD;
-    A[README.md] --> B[Vivanov1 Dashboard.json];
-    A[README.md] --> C[azure-CD-create-2-storages-and-LinuxVM-IP.yml];
-    A[README.md] --> D[azure-CD-create-storage.yml];
-    A[README.md] --> E[azure-CD-run-blob-script.yml];
-    A[README.md] --> F[parameters/];
-    F --> G[parametersVM.json];
-    F --> H[parameters_storage.json];
-    F --> I[parameters_store_a.json];
-    F --> J[parameters_store_b.json];
-    A[README.md] --> K[scripts/];
-    K --> L[blob-creation-with-parameters.sh];
-    A[README.md] --> M[templates/];
-    M --> N[arm-template-storage-account.json];
-    M --> O[arm-template2-vm-linux.json];
+
+```plaintext
+.
+├── README.md                                 # This file
+├── Vivanov1 Dashboard.json                  # Dashboard JSON file
+├── azure-CD-create-2-storages-and-LinuxVM-IP.yml  # Pipeline for creating storage accounts and Linux VM
+├── azure-CD-create-storage.yml              # Pipeline for creating storage accounts
+├── azure-CD-run-blob-script.yml             # Pipeline for running blob creation script
+├── parameters/                              # Directory for parameter files
+│   ├── parametersVM.json                    # Parameters for the VM template
+│   ├── parameters_storage.json              # Parameters for the first storage account template
+│   ├── parameters_store_a.json              # Parameters for the second storage account template
+│   └── parameters_store_b.json              # Parameters for the second storage account template (another version)
+├── scripts/                                 # Directory for scripts
+│   └── blob-creation-with-parameters.sh     # Script to create, upload, and copy 100 blobs
+├── templates/                               # Directory for ARM templates
+│   ├── arm-template-storage-account.json    # ARM template for creating a storage account
+│   └── arm-template2-vm-linux.json          # ARM template for creating a Linux VM
+└── .git/                                    # Git version control directory (if using git)
+
 
 
 ## ARM Templates for Storage Accounts and Server
