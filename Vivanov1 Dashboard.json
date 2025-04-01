@@ -1,0 +1,381 @@
+{
+  "properties": {
+    "lenses": [
+      {
+        "order": 0,
+        "parts": [
+          {
+            "position": {
+              "x": 0,
+              "y": 0,
+              "colSpan": 7,
+              "rowSpan": 9
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "resourceType",
+                  "value": "Microsoft.Resources/resources",
+                  "isOptional": true
+                },
+                {
+                  "name": "filter",
+                  "isOptional": true
+                },
+                {
+                  "name": "scope",
+                  "isOptional": true
+                },
+                {
+                  "name": "kind",
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/BrowseAllResourcesPinnedPart"
+            }
+          },
+          {
+            "position": {
+              "x": 7,
+              "y": 0,
+              "colSpan": 14,
+              "rowSpan": 5
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "options",
+                  "isOptional": true
+                },
+                {
+                  "name": "sharedTimeRange",
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+              "settings": {
+                "content": {
+                  "options": {
+                    "chart": {
+                      "metrics": [
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/e3e51142-3541-4bfd-b487-bd80bb6ca424/resourceGroups/vivanov-rg3/providers/Microsoft.Compute/virtualMachines/vivanov1-vm"
+                          },
+                          "name": "Available Memory Percentage",
+                          "aggregationType": 4,
+                          "namespace": "microsoft.compute/virtualmachines",
+                          "metricVisualization": {
+                            "displayName": "Available Memory Percentage (Preview)",
+                            "resourceDisplayName": "vivanov1-vm"
+                          }
+                        },
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/e3e51142-3541-4bfd-b487-bd80bb6ca424/resourceGroups/vivanov-rg3/providers/Microsoft.Compute/virtualMachines/vivanov1-vm"
+                          },
+                          "name": "Percentage CPU",
+                          "aggregationType": 4,
+                          "namespace": "microsoft.compute/virtualmachines",
+                          "metricVisualization": {
+                            "displayName": "Percentage CPU",
+                            "resourceDisplayName": "vivanov1-vm"
+                          }
+                        },
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/e3e51142-3541-4bfd-b487-bd80bb6ca424/resourceGroups/vivanov-rg3/providers/Microsoft.Compute/virtualMachines/vivanov1-vm"
+                          },
+                          "name": "VmAvailabilityMetric",
+                          "aggregationType": 4,
+                          "namespace": "microsoft.compute/virtualmachines",
+                          "metricVisualization": {
+                            "displayName": "VM Availability Metric (Preview)",
+                            "resourceDisplayName": "vivanov1-vm"
+                          }
+                        },
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/e3e51142-3541-4bfd-b487-bd80bb6ca424/resourceGroups/vivanov-rg3/providers/Microsoft.Compute/virtualMachines/vivanov1-vm"
+                          },
+                          "name": "VmAvailabilityMetric",
+                          "aggregationType": 4,
+                          "namespace": "microsoft.compute/virtualmachines",
+                          "metricVisualization": {
+                            "displayName": "VM Availability Metric (Preview)",
+                            "resourceDisplayName": "vivanov1-vm"
+                          }
+                        },
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/e3e51142-3541-4bfd-b487-bd80bb6ca424/resourceGroups/vivanov-rg3/providers/Microsoft.Compute/virtualMachines/vivanov1-vm"
+                          },
+                          "name": "Network In Total",
+                          "aggregationType": 1,
+                          "namespace": "microsoft.compute/virtualmachines",
+                          "metricVisualization": {
+                            "displayName": "Network In Total",
+                            "resourceDisplayName": "vivanov1-vm"
+                          }
+                        },
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/e3e51142-3541-4bfd-b487-bd80bb6ca424/resourceGroups/vivanov-rg3/providers/Microsoft.Compute/virtualMachines/vivanov1-vm"
+                          },
+                          "name": "Network Out Total",
+                          "aggregationType": 1,
+                          "namespace": "microsoft.compute/virtualmachines",
+                          "metricVisualization": {
+                            "displayName": "Network Out Total",
+                            "resourceDisplayName": "vivanov1-vm"
+                          }
+                        }
+                      ],
+                      "title": "Avg Available Memory Percentage (Preview), Avg Percentage CPU, and 4 other metrics for vivanov1-vm",
+                      "titleKind": 1,
+                      "visualization": {
+                        "chartType": 2,
+                        "legendVisualization": {
+                          "isVisible": true,
+                          "position": 2,
+                          "hideHoverCard": false,
+                          "hideLabelNames": true
+                        },
+                        "axisVisualization": {
+                          "x": {
+                            "isVisible": true,
+                            "axisType": 2
+                          },
+                          "y": {
+                            "isVisible": true,
+                            "axisType": 1
+                          }
+                        },
+                        "disablePinning": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "position": {
+              "x": 7,
+              "y": 5,
+              "colSpan": 7,
+              "rowSpan": 4
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "options",
+                  "isOptional": true
+                },
+                {
+                  "name": "sharedTimeRange",
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+              "settings": {
+                "content": {
+                  "options": {
+                    "chart": {
+                      "metrics": [
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/e3e51142-3541-4bfd-b487-bd80bb6ca424/resourceGroups/vivanov-rg3/providers/Microsoft.Storage/storageAccounts/astorezdqzvc6xduuhe"
+                          },
+                          "name": "UsedCapacity",
+                          "aggregationType": 4,
+                          "namespace": "microsoft.storage/storageaccounts",
+                          "metricVisualization": {
+                            "displayName": "Used capacity"
+                          }
+                        },
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/e3e51142-3541-4bfd-b487-bd80bb6ca424/resourceGroups/vivanov-rg3/providers/Microsoft.Storage/storageAccounts/astorezdqzvc6xduuhe"
+                          },
+                          "name": "ContainerCount",
+                          "aggregationType": 4,
+                          "namespace": "microsoft.storage/storageaccounts/blobservices",
+                          "metricVisualization": {
+                            "displayName": "Blob Container Count"
+                          }
+                        },
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/e3e51142-3541-4bfd-b487-bd80bb6ca424/resourceGroups/vivanov-rg3/providers/Microsoft.Storage/storageAccounts/astorezdqzvc6xduuhe"
+                          },
+                          "name": "BlobCount",
+                          "aggregationType": 4,
+                          "namespace": "microsoft.storage/storageaccounts/blobservices",
+                          "metricVisualization": {
+                            "displayName": "Blob Count"
+                          }
+                        }
+                      ],
+                      "title": "Avg Used capacity, Avg Blob Container Count, and Avg Blob Count for astorezdqzvc6xduuhe",
+                      "titleKind": 1,
+                      "visualization": {
+                        "chartType": 2,
+                        "legendVisualization": {
+                          "isVisible": true,
+                          "position": 2,
+                          "hideHoverCard": false,
+                          "hideLabelNames": true
+                        },
+                        "axisVisualization": {
+                          "x": {
+                            "isVisible": true,
+                            "axisType": 2
+                          },
+                          "y": {
+                            "isVisible": true,
+                            "axisType": 1
+                          }
+                        },
+                        "disablePinning": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "position": {
+              "x": 14,
+              "y": 5,
+              "colSpan": 7,
+              "rowSpan": 4
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "options",
+                  "isOptional": true
+                },
+                {
+                  "name": "sharedTimeRange",
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+              "settings": {
+                "content": {
+                  "options": {
+                    "chart": {
+                      "metrics": [
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/e3e51142-3541-4bfd-b487-bd80bb6ca424/resourceGroups/vivanov-rg3/providers/Microsoft.Storage/storageAccounts/bstorezdqzvc6xduuhe"
+                          },
+                          "name": "UsedCapacity",
+                          "aggregationType": 4,
+                          "namespace": "microsoft.storage/storageaccounts",
+                          "metricVisualization": {
+                            "displayName": "Used capacity"
+                          }
+                        },
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/e3e51142-3541-4bfd-b487-bd80bb6ca424/resourceGroups/vivanov-rg3/providers/Microsoft.Storage/storageAccounts/bstorezdqzvc6xduuhe"
+                          },
+                          "name": "ContainerCount",
+                          "aggregationType": 4,
+                          "namespace": "microsoft.storage/storageaccounts/blobservices",
+                          "metricVisualization": {
+                            "displayName": "Blob Container Count"
+                          }
+                        },
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/e3e51142-3541-4bfd-b487-bd80bb6ca424/resourceGroups/vivanov-rg3/providers/Microsoft.Storage/storageAccounts/bstorezdqzvc6xduuhe"
+                          },
+                          "name": "BlobCount",
+                          "aggregationType": 4,
+                          "namespace": "microsoft.storage/storageaccounts/blobservices",
+                          "metricVisualization": {
+                            "displayName": "Blob Count"
+                          }
+                        }
+                      ],
+                      "title": "Avg Used capacity, Avg Blob Container Count, and Avg Blob Count for bstorezdqzvc6xduuhe",
+                      "titleKind": 1,
+                      "visualization": {
+                        "chartType": 2,
+                        "legendVisualization": {
+                          "isVisible": true,
+                          "position": 2,
+                          "hideHoverCard": false,
+                          "hideLabelNames": true
+                        },
+                        "axisVisualization": {
+                          "x": {
+                            "isVisible": true,
+                            "axisType": 2
+                          },
+                          "y": {
+                            "isVisible": true,
+                            "axisType": 1
+                          }
+                        },
+                        "disablePinning": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "metadata": {
+      "model": {
+        "timeRange": {
+          "value": {
+            "relative": {
+              "duration": 24,
+              "timeUnit": 1
+            }
+          },
+          "type": "MsPortalFx.Composition.Configuration.ValueTypes.TimeRange"
+        },
+        "filterLocale": {
+          "value": "en-us"
+        },
+        "filters": {
+          "value": {
+            "MsPortalFx_TimeRange": {
+              "model": {
+                "format": "utc",
+                "granularity": "auto",
+                "relative": "24h"
+              },
+              "displayCache": {
+                "name": "UTC Time",
+                "value": "Past 24 hours"
+              },
+              "filteredPartIds": [
+                "StartboardPart-MonitorChartPart-86251d88-8a36-4a22-9748-ae3b61c6e5c7",
+                "StartboardPart-MonitorChartPart-86251d88-8a36-4a22-9748-ae3b61c6e78c",
+                "StartboardPart-MonitorChartPart-86251d88-8a36-4a22-9748-ae3b61c6e798"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "name": "Vivanov1 Dashboard",
+  "type": "Microsoft.Portal/dashboards",
+  "location": "INSERT LOCATION",
+  "tags": {
+    "hidden-title": "Vivanov1 Dashboard"
+  },
+  "apiVersion": "2022-12-01-preview"
+}
