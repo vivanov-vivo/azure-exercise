@@ -1,6 +1,7 @@
 # Azure pipeline to run Storage Account Creation
-# ARM template file : templates/arm-template-storage-account.json
-# Parameters file :  parameters/parameters_storage.json 
+# ARM template file            : templates/arm-template-storage-account.json
+# Parameters file              : parameters/parameters_storage.json
+# Pipeline custome variables   : storagePrefix, resourceGroup
 # Parameter storagePrefix value can be overrided by Pipeline Variable $(storagePrefix); default value is viv
 
 name: $(Build.DefinitionName)_$(Build.BuildId)
