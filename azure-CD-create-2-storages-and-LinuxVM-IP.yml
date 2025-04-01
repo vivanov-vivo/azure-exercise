@@ -1,10 +1,10 @@
 # Azure pipeline to Create 2 StorageAccounts and Linux VM 
-# ARM template files : templates/arm-template-storage-account.json
-#                      templates/arm-template2-vm-linux.json
-# Parameters file    : parameters/parameters_store_a.json
-#                      parameters/parameters_store_b.json
-#                      parameters/parametersVM.json
-#
+# ARM template files        : templates/arm-template-storage-account.json
+#                             templates/arm-template2-vm-linux.json
+# Parameters file           : parameters/parameters_store_a.json
+#                             parameters/parameters_store_b.json
+#                             parameters/parametersVM.json
+# Pipeline custom variables : resourceGroup, storagePrefix
 # Set resourceGroup parameter value as desired in  Pipeline Variables 
 
 name: $(Build.DefinitionName)_$(Build.BuildId)
