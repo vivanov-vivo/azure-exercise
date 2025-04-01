@@ -72,28 +72,34 @@ A separate ARM template was created to provision  **Linux** server. This templat
 
 ---
 
-## Continuous Deployment Pipeline Setup
+## Continuous Deployment Setup
 
-### Azure DevOps Pipeline
-The Continuous Deployment pipeline was set up using **Azure DevOps**. This pipeline automates the entire process, including:
-- Deploying Storage Accounts and the Server using the ARM templates.
+### Azure DevOps Pipelines
+The Continuous Deployment was set up using **Azure DevOps**. It presents as set of Azure Devops pipelines and automates the entire process, including:
+- Create Storage Accounts and the Server using the ARM templates in Azure cloud.
+- Installation Azure CLI on new created Virtual Machine and trigerring bash script on it for create desired numbers of blobs, uploading them into Storage Account A and then copying those blobs frm Storage Account A to Storage Account B.
+- Additional pipeline for create Storage Account for Monitoring Dashbord purpose.
 - The Azure DevOps pipeline was configured with a self-hosted Azure DevOps agent, ensuring that permission issues are bypassed.
 
-### Pipeline Steps:
+### Pipeline main Steps:
 1. **Deploy ARM Template for Storage Accounts:**
    The pipeline deploys the ARM template to create two storage accounts.
    
 2. **Deploy ARM Template for Server:**
-   The pipeline provisions a virtual machine (VM) to host and run the blob management script.
+   The pipeline provisions  Linux virtual machine (VM) to host and run the blob management script.
 
-3. **Run Blob Management Script:**
+3. **Install AzureCLI on new created VM:**
+   The pipeline automatically executes a script that creates, uploads, and copies 100 blobs from Storage Account A to Storage Account B.
+   
+4. **Run Blob Management Script:**
    The pipeline automatically executes a script that creates, uploads, and copies 100 blobs from Storage Account A to Storage Account B.
 
+  
 ---
 
 ## Blob Management Script
 
-A PowerShell or Bash script was created to perform the following actions:
+A Bash script was created to perform the following actions:
 1. **Create 100 Blobs:** Upload 100 blobs to **Storage Account A**.
 2. **Copy Blobs:** Copy the blobs from **Storage Account A** to **Storage Account B**.
 3. The script is executed via the CD pipeline on the server created earlier to automate the entire process.
@@ -121,16 +127,20 @@ A **custom dashboard** was created using Azure Monitor to display these key metr
 - Azure Subscription (trial or paid)
 - Azure DevOps account
 - Personal computer set as an Azure DevOps agent (if needed)
+- Create Role Assignment on Managed Identity after VM is created and running according to the list. 
 
 ### Steps to Run the Project:
-1. **Deploy ARM Templates:**
-   - Clone the repository or get the ARM templates ready.
-   - Use Azure DevOps or the Azure CLI to deploy the ARM templates for the Storage Accounts and Server.
+1. **Prepare Azure DevOps Repository:**
+   - Clone this repository to Azure Devops account. 
    
 2. **Configure Azure DevOps Pipeline:**
-   - Create an Azure DevOps pipeline.
-   - Use the `azure-cli` task to invoke ARM templates.
-   - Add a script task to execute the blob management script.
+   - Create A Variable Group under  Pipeline includes th following variables:
+    ```plaintext
+    azureSubscription
+    location
+    projectName
+    ```
+   - Create an Azure DevOps pipelines , using the existing pipeline files from repository; make sure to configure pipeline private variables per pipeline, they are    also mentioned in the pipelines files.
 
 3. **Verify Blob Copying:**
    - Ensure that blobs are created and copied between storage accounts by checking the storage account metrics and the output logs of the pipeline.
