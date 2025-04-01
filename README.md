@@ -29,6 +29,25 @@ This project focuses on automating the creation and management of Azure resource
 To begin the project, a trial Azure subscription was created using the [Azure Free Trial Offer](https://azure.microsoft.com/en-in/pricing/offers/ms-azr-0044p). This provides access to Azure resources with a limited budget for testing and development.
 
 ---
+# Repository Structure
+
+This repository is organized as follows:
+graph TD;
+    A[README.md] --> B[Vivanov1 Dashboard.json];
+    A[README.md] --> C[azure-CD-create-2-storages-and-LinuxVM-IP.yml];
+    A[README.md] --> D[azure-CD-create-storage.yml];
+    A[README.md] --> E[azure-CD-run-blob-script.yml];
+    A[README.md] --> F[parameters/];
+    F --> G[parametersVM.json];
+    F --> H[parameters_storage.json];
+    F --> I[parameters_store_a.json];
+    F --> J[parameters_store_b.json];
+    A[README.md] --> K[scripts/];
+    K --> L[blob-creation-with-parameters.sh];
+    A[README.md] --> M[templates/];
+    M --> N[arm-template-storage-account.json];
+    M --> O[arm-template2-vm-linux.json];
+
 
 ## ARM Templates for Storage Accounts and Server
 
