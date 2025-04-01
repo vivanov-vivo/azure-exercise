@@ -1,7 +1,8 @@
 # Azure pipeline to run script on Linux VM that will generate desired number of blobs , 
 #                uploade them to StorageAccount A 
 #                and copy them from StorageAccounta to StorageaccountB
-# Bash Script file : scripts\blob-creation-with-parameters.sh
+# Bash Script file            : scripts\blob-creation-with-parameters.sh
+# Pipleline custom variables  : containerName, blobName, num, resourceGroup
 # Parameters containerName, blobName and numBlobs (number of blobs) can be set to desired values in Pipeline Variables
 
 name: $(Build.DefinitionName)_$(Build.BuildId)
