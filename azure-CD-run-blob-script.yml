@@ -1,0 +1,81 @@
+# Azure pipeline to run script on Linux VM that will generate desired number of blobs , 
+#                uploade them to StorageAccount A 
+#                and copy them from StorageAccounta to StorageaccountB
+# Bash Script file : scripts\blob-creation-with-parameters.sh
+# Parameters containerName, blobName and numBlobs (number of blobs) can be set to desired values in Pipeline Variables
+
+name: $(Build.DefinitionName)_$(Build.BuildId)
+
+trigger:
+  - main
+
+variables:
+  - group: vivanov1-var-group
+
+pool:
+  name: vivanovpc
+
+jobs:
+- job: RunBlobsCreation
+  displayName: 'Run Blobs Creation'
+  steps:
+  - task: AzureCLI@2
+    displayName: 'Run Blob script on VM using Azure CLI with variables'
+    inputs:
+      azureSubscription: $(azureSubscription)
+      scriptType: 'pscore'
+      scriptLocation: 'inlineScript'
+      inlineScript: |
+        # Define variables from pipeline
+        $containerName = "$(containerName)"
+        $blobName = "$(blobName)"
+        $num = "$(numBlobs)"
+        $resourceGroup = "$(resourceGroup)"
+        $location = "$(location)"
+        $projectName = "$(projectName)"
+        $vmName = "$projectName-vm"
+        Write-Host "Script $scriptPath will run on VM host $vmName from ResourcGroup $resourceGroup now!"
+        
+        Write-Host "Fetching storage accounts from resource group: $resourceGroup"
+        
+        # Fetch storage accounts in the resource group and get the names
+        $storageAccounts = az storage account list --resource-group $resourceGroup --query "[].name" -o tsv
+
+        # Check if storage accounts are found
+        if ($storageAccounts) {
+          $storageAccountsArray = $storageAccounts -split "`n"
+
+          # If there are at least two storage accounts, assign them to the parameters
+          if ($storageAccountsArray.Count -ge 2) {
+            $storageAccount1 = $storageAccountsArray[0]
+            $storageAccount2 = $storageAccountsArray[1]
+            
+            Write-Host "Storage Account 1: $storageAccount1"
+            Write-Host "Storage Account 2: $storageAccount2"
+
+            # Path to the script on the VM
+            $scriptPath = "$(Build.SourcesDirectory)\scripts\blob-creation-with-parameters.sh"
+
+            # Validate if the script exists
+            if (Test-Path $scriptPath) {
+              Write-Host "Script found. Proceeding with execution."
+
+              # Run the script on the VM with the parameters
+              az vm run-command invoke `
+                --command-id RunShellScript `
+                --name $vmName `
+                --resource-group $resourceGroup `
+                --scripts @$scriptPath `
+                --parameters $storageAccount1 $storageAccount2 $containerName $blobName $num $resourceGroup $location `
+                --output json
+            } else {
+              Write-Host "Error: The script at $scriptPath does not exist."
+            }
+          } else {
+            Write-Host "Error: Not enough storage accounts found in resource group $resourceGroup."
+          }
+        } else {
+          Write-Host "Error: No storage accounts found in resource group $resourceGroup."
+        }
+
+

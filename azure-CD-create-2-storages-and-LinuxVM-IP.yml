@@ -1,0 +1,124 @@
+# Azure pipeline to Create 2 StorageAccounts and Linux VM 
+# ARM template files : templates/arm-template-storage-account.json
+#                      templates/arm-template2-vm-linux.json
+# Parameters file    : parameters/parameters_store_a.json
+#                      parameters/parameters_store_b.json
+#                      parameters/parametersVM.json
+#
+# Set resourceGroup parameter value as desired in  Pipeline Variables 
+
+name: $(Build.DefinitionName)_$(Build.BuildId)
+
+trigger:
+- main
+
+variables:
+  - group: vivanov1-var-group
+
+pool:
+  name: vivanovpc # Replace with your actual self-hosted agent pool name
+
+jobs:
+- job: DeployResources
+  displayName: 'Deploy Storage Accounts and VM'
+  steps:
+
+  # Step 1: Install Azure CLI (if not already installed on the self-hosted agent)
+  - task: AzureCLI@2
+    displayName: 'Install Azure CLI'
+    inputs:
+      azureSubscription: $(azureSubscription)
+      scriptType: 'pscore'  # Changed to pscore
+      scriptLocation: 'inlineScript'
+      inlineScript: |
+        # Check if Azure CLI is installed
+        if (-not (Get-Command az -ErrorAction SilentlyContinue)) {
+          Write-Host "Azure CLI is not installed. Installing Azure CLI..."
+          curl -sL https://aka.ms/InstallAzureCLIDeb | bash
+          sudo apt-get install -y azure-cli
+        }
+        else {
+          Write-Host "Azure CLI is already installed. Skipping installation."
+        }
+
+  # Step 2: Check if the resource group exists, if not, create it
+  - task: AzureCLI@2
+    displayName: 'Create Resource Group using Azure CLI'
+    inputs:
+      azureSubscription: $(azureSubscription)
+      scriptType: 'pscore'  # Changed to pscore
+      scriptLocation: 'inlineScript'
+      inlineScript: |
+        $RESOURCE_GROUP = "$(resourceGroup)"
+        $LOCATION = "$(location)"
+        
+        # Check if the resource group exists
+        $RG_EXISTS = az group show --name $RESOURCE_GROUP --query "name" --output tsv
+        
+        if (-not $RG_EXISTS) {
+          Write-Host "Resource group does not exist. Creating resource group..."
+          az group create --name $RESOURCE_GROUP --location $LOCATION
+        }
+        else {
+          Write-Host "Resource group '$RESOURCE_GROUP' already exists. Skipping creation."
+        }
+
+  # Step 3: Deploy Storage Account A using Azure CLI
+  - task: AzureCLI@2
+    displayName: 'Deployment Storage Account A using Azure CLI'  
+    inputs:
+      azureSubscription: $(azureSubscription)
+      scriptType: 'pscore'  # Changed to pscore
+      scriptLocation: 'inlineScript'
+      inlineScript: |
+        Write-Host "Deploying Storage Account A..."
+        az deployment group create `
+          --resource-group $(resourceGroup) `
+          --template-file $(Build.SourcesDirectory)/templates/arm-template-storage-account.json `
+          --parameters $(Build.SourcesDirectory)/parameters/parameters_store_a.json
+
+  # Step 4: Deploy Storage Account B using Azure CLI
+  - task: AzureCLI@2
+    displayName: 'Deployment Storage Account B using Azure CLI'
+    inputs:
+      azureSubscription: $(azureSubscription)
+      scriptType: 'pscore'  # Changed to pscore
+      scriptLocation: 'inlineScript'
+      inlineScript: |
+        Write-Host "Deploying Storage Account B..."
+        az deployment group create `
+          --resource-group $(resourceGroup) `
+          --template-file $(Build.SourcesDirectory)/templates/arm-template-storage-account.json `
+          --parameters $(Build.SourcesDirectory)/parameters/parameters_store_b.json
+
+  # Step 5: Deploy Linux VM using Azure CLI
+  - task: AzureCLI@2
+    displayName: 'Deployment Linux VM using Azure CLI'
+    inputs:
+      azureSubscription: $(azureSubscription)
+      scriptType: 'pscore'  # Changed to pscore
+      scriptLocation: 'inlineScript'
+      inlineScript: |
+        Write-Host "Deploying Linux VM..."
+        az deployment group create `
+          --resource-group $(resourceGroup) `
+          --template-file $(Build.SourcesDirectory)/templates/arm-template2-vm-linux.json `
+          --parameters $(Build.SourcesDirectory)/parameters/parametersVM.json
+
+  # Step 6: Get the public IP of the newly created VM
+  - task: AzureCLI@2
+    displayName: 'Get Public IP of the VM'
+    inputs:
+      azureSubscription: $(azureSubscription)
+      scriptType: 'pscore'
+      scriptLocation: 'inlineScript'
+      inlineScript: |
+        $projectName = "$(projectName)"
+        Write-Host "Project Name: $projectName"
+        $vmName = "$projectName-vm"
+        Write-Host "VM Name: $vmName"
+
+        # Get the public IP address of the newly created VM
+        $publicIP = az vm list-ip-addresses --name $vmName --resource-group $(resourceGroup) --query "[0].virtualMachine.network.publicIpAddresses[0].ipAddress" --output tsv
+
+        Write-Host "Public IP Address of $vmName is:    $publicIP"
