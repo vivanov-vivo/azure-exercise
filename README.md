@@ -113,16 +113,19 @@ A Bash script was created to perform the following actions:
 
 The system includes one server and two storage accounts. To ensure the health and performance of this small system, the following metrics are monitored:
 
-- **CPU Usage** on the VM
-- **Disk Usage (Free Space)** on the VM
-- **Network In/Out traffic** for both the VM and the Storage Accounts
+- **VM Metrics :** 
+   - **CPU Metrics**
+   - **Memory Usage** 
+   - **Network metrics**
+   - **Avalability Metrics** 
 - **Storage Account Metrics:**
-   - **Used Capacity** and **Free Space**
-   - **Transaction Rate** and **Ingress/Egress**
-
+   - **Used Capacity** , **Blob Container Count** , **Blob Count**
+  
 ![Project Metrics](images/metrics.png)
 
 A **custom dashboard** was created using Azure Monitor to display these key metrics in real-time.
+
+![Project Dashboard](images/dashboard.png)
 
 ---
 
