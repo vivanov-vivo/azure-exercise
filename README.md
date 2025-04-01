@@ -17,11 +17,12 @@ This project focuses on automating the creation and management of Azure resource
 
 ## Table of Contents
 1. [Azure Trial Subscription](#azure-trial-subscription)
-2. [ARM Templates for Storage Accounts and Server](#arm-templates-for-storage-accounts-and-server)
-3. [Continuous Deployment Pipeline Setup](#continuous-deployment-pipeline-setup)
-4. [Blob Management Script](#blob-management-script)
-5. [Metrics and Monitoring](#metrics-and-monitoring)
-6. [Getting Started](#getting-started)
+2. [Repository Structure](#repository-structure)
+3. [ARM Templates for Storage Accounts and Server](#arm-templates-for-storage-accounts-and-server)
+4. [Continuous Deployment Pipeline Setup](#continuous-deployment-pipeline-setup)
+5. [Blob Management Script](#blob-management-script)
+6. [Metrics and Monitoring](#metrics-and-monitoring)
+7. [Getting Started](#getting-started)
 
 ---
 
@@ -77,7 +78,8 @@ A separate ARM template was created to provision  **Linux** server. This templat
 ### Azure DevOps Pipelines
 The Continuous Deployment was set up using **Azure DevOps**. It presents as set of Azure Devops pipelines and automates the entire process, including:
 - Create Storage Accounts and the Server using the ARM templates in Azure cloud.
-- Installation Azure CLI on new created Virtual Machine and trigerring bash script on it for create desired numbers of blobs, uploading them into Storage Account A and then copying those blobs frm Storage Account A to Storage Account B.
+- Installation Azure CLI on new created Virtual Machine and trigerring bash script on it for create desired numbers of blobs, uploading them into Storage Account A 
+  and then copying those blobs frm Storage Account A to Storage Account B.
 - Additional pipeline for create Storage Account for Monitoring Dashbord purpose.
 - The Azure DevOps pipeline was configured with a self-hosted Azure DevOps agent, ensuring that permission issues are bypassed.
 
@@ -87,11 +89,12 @@ The Continuous Deployment was set up using **Azure DevOps**. It presents as set 
    
 2. **Deploy ARM Template for Server:**
    The pipeline provisions  Linux virtual machine (VM) to host and run the blob management script.
+       ! Create Role Assignment on Managed Identity is requered after VM is created and running according to the list can be found in scripts directory.
 
-3. **Install AzureCLI on new created VM:**
+4. **Install AzureCLI on new created VM:**
    The pipeline automatically executes a script that creates, uploads, and copies 100 blobs from Storage Account A to Storage Account B.
    
-4. **Run Blob Management Script:**
+5. **Run Blob Management Script:**
    The pipeline automatically executes a script that creates, uploads, and copies 100 blobs from Storage Account A to Storage Account B.
 
   
@@ -127,7 +130,7 @@ A **custom dashboard** was created using Azure Monitor to display these key metr
 - Azure Subscription (trial or paid)
 - Azure DevOps account
 - Personal computer set as an Azure DevOps agent (if needed)
-- Create Role Assignment on Managed Identity after VM is created and running according to the list. 
+- Create Role Assignment on Managed Identity , requered after VM is created and running according to the list can be found in scripts directory. 
 
 ### Steps to Run the Project:
 1. **Prepare Azure DevOps Repository:**
@@ -142,11 +145,17 @@ A **custom dashboard** was created using Azure Monitor to display these key metr
     ```
    - Create an Azure DevOps pipelines , using the existing pipeline files from repository; make sure to configure pipeline private variables per pipeline, they are    also mentioned in the pipelines files.
 
-3. **Verify Blob Copying:**
-   - Ensure that blobs are created and copied between storage accounts by checking the storage account metrics and the output logs of the pipeline.
+3. **Run Pipelines in following order:**
+   - azure-CD-create-storages-and-VM-IP (Create Role Assignment on Managed Identity , requered after VM is created and running!)
+   - azure-CD-run-blob-script
+   - azure-CD-create-storageAccount -  Storage Account for Monitoring
+     
+5. **Verify Blob Copying:**
+   - Ensure that blobs are created and copied between storage accounts by checking the storage accounts Resources on Azure Home page.
 
-4. **Monitor Metrics:**
+6. **Monitor Metrics:**
    - Go to **Azure Monitor** in the Azure Portal.
+   - Create own custom dashboard or upload json file from home dir of this repository.
    - View the custom dashboard to monitor the server and storage account metrics in real time.
 
 ---
