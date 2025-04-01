@@ -51,7 +51,7 @@ This repository is organized as follows:
 │   ├── arm-template-storage-account.json    # ARM template for creating a storage account
 │   └── arm-template2-vm-linux.json          # ARM template for creating a Linux VM
 └── .git/                                    # Git version control directory (if using git)
-
+```
 
 
 ## ARM Templates for Storage Accounts and Server
