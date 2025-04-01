@@ -120,7 +120,7 @@ The system includes one server and two storage accounts. To ensure the health an
    - **Used Capacity** and **Free Space**
    - **Transaction Rate** and **Ingress/Egress**
 
-![Diagram](images/Screenshot 2025-04-02 004006.png)
+![Project Metrics](images/metrics.png)
 
 A **custom dashboard** was created using Azure Monitor to display these key metrics in real-time.
 
